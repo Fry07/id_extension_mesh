@@ -22,8 +22,10 @@ namespace WindowsFormsApplication4
             InitializeComponent();            
         }
 
-        String folder_path = null;
-        String altium_ID = null;
+        String folderPath = null;
+        String altiumID = null;
+
+        String warningFolderMissing = "Please select correct Altium folder";
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -31,9 +33,9 @@ namespace WindowsFormsApplication4
             {
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    folder_path = folderDialog.SelectedPath;
-                    //MessageBox.Show("You've selected: " + folder_path);
-                    richTextBox1.Text += "You've selected: " + folder_path + "\n";
+                    folderPath = folderDialog.SelectedPath;
+                    //MessageBox.Show("You've selected: " + folderPath);
+                    richTextBox1.Text += "You've selected: " + folderPath + "\n";
                 }
             }
             
@@ -41,14 +43,14 @@ namespace WindowsFormsApplication4
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (folder_path == null)
+            if (folderPath == null)
             {
-                MessageBox.Show("Please select product");
+                MessageBox.Show(warningFolderMissing);
             }
             else
             {
-                altium_ID = findAltiumID(folder_path);
-                richTextBox1.Text += "Altium ID: " + altium_ID + "\n";
+                altiumID = findAltiumID(folderPath);
+                richTextBox1.Text += "Altium ID: " + altiumID + "\n";
             }            
         }
 
@@ -73,7 +75,7 @@ namespace WindowsFormsApplication4
             }
             else
             {
-                MessageBox.Show("Please select correct Altium folder");
+                MessageBox.Show(warningFolderMissing);
                 return res;
             }
         }
@@ -117,13 +119,13 @@ namespace WindowsFormsApplication4
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (folder_path == null)
+            if (folderPath == null)
             {
-                MessageBox.Show("Please select product");
+                MessageBox.Show(warningFolderMissing);
             }             
             else
             {
-                openFolder(@"C:\ProgramData\Altium\"+ findProductType(folder_path) + " {" + findAltiumID(folder_path) + @"}\Extensions");
+                openFolder(@"C:\ProgramData\Altium\"+ findProductType(folderPath) + " {" + findAltiumID(folderPath) + @"}\Extensions");
             }                    
         }
 
@@ -166,19 +168,47 @@ namespace WindowsFormsApplication4
             WindowsIdentity user = WindowsIdentity.GetCurrent();
             string userName = user.Name.Substring(user.Name.LastIndexOf("\\") + 1);
 
-            if (folder_path == null)
+            if (folderPath == null)
             {
-                MessageBox.Show("Please select product");
+                MessageBox.Show(warningFolderMissing);
             }
             else
             {
-                deleteInFolder(@"C:\Users\" + userName + @"\AppData\Local\Altium\" + findProductType(folder_path) + " {" + findAltiumID(folder_path) + @"}\Mesh");
+                deleteInFolder(@"C:\Users\" + userName + @"\AppData\Local\Altium\" + findProductType(folderPath) + " {" + findAltiumID(folderPath) + @"}\Mesh");
             }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            runAltium(folderPath);
+        }
+
+        private void runAltium (string filePath)
+        {
+            string product = null;
+            if (Directory.Exists(filePath) && File.Exists(filePath + @"\System\PrefFolder.ini"))
+            {
+                product = (File.Exists(filePath + "\\X2.exe")) ? "X2.exe" : "DXP.exe";
+                richTextBox1.Text += "Running " + product + " from " + filePath + "\n";
+                filePath += "\\" + product;
+                if (File.Exists(filePath))
+                {
+                    Process.Start(filePath);
+                }                    
+                else
+                {
+                    MessageBox.Show("Can't find .exe file to launch");
+                }                    
+            }
+            else
+            {
+                MessageBox.Show(warningFolderMissing);
+            }
         }
     }
 }
