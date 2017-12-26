@@ -34,9 +34,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.splitButton1 = new ClassLibrary2.SplitButton();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -90,16 +89,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(215, 289);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(196, 23);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Delete Mesh";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(215, 234);
@@ -110,28 +99,28 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button6
+            // splitButton1
             // 
-            this.button6.Location = new System.Drawing.Point(132, 114);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            //this.button6.Image = ; // Your down-arrow image
-
-            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.splitButton1.ColeItems = new string[] {
+        "Delete Mesh Folder",
+        "Open Mesh Folder"};
+            this.splitButton1.Image = ((System.Drawing.Image)(resources.GetObject("splitButton1.Image")));
+            this.splitButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.splitButton1.Location = new System.Drawing.Point(215, 289);
+            this.splitButton1.Name = "splitButton1";
+            this.splitButton1.Size = new System.Drawing.Size(196, 23);
+            this.splitButton1.TabIndex = 8;
+            this.splitButton1.Text = "Mesh...";
+            this.splitButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.splitButton1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 321);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.splitButton1);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
@@ -153,9 +142,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button6;
+        private ClassLibrary2.SplitButton splitButton1;
     }
 }
 

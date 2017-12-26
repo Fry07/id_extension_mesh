@@ -20,7 +20,10 @@ namespace WindowsFormsApplication4
 
         public Form1()
         {
-            InitializeComponent();            
+            InitializeComponent();
+
+            splitButton1.Cms.Items[0].Click += new EventHandler(SplitClickDelete);
+            splitButton1.Cms.Items[1].Click += new EventHandler(SplitClickOpen);
         }
 
         String folderPath = null;
@@ -29,7 +32,7 @@ namespace WindowsFormsApplication4
         String meshFolder = null;
 
         String warningFolderMissing = "Please select correct Altium folder";
-
+              
         private void button1_Click(object sender, EventArgs e)
         {
             using (var folderDialog = new FolderBrowserDialog())
@@ -202,7 +205,7 @@ namespace WindowsFormsApplication4
             DialogResult dialogResult = MessageBox.Show("Are you sure to delete Mesh folder", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                //do something
+                
                 WindowsIdentity user = WindowsIdentity.GetCurrent();
                 string userName = user.Name.Substring(user.Name.LastIndexOf("\\") + 1);
 
@@ -214,20 +217,16 @@ namespace WindowsFormsApplication4
                 {
                     if (searchRegistry() == "%AltiumMeshApplicationData%")
                     {
-                        deleteInFolder(@"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(folderPath) + @"}\Mesh");
+                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(folderPath) + @"}\Mesh";
+                        deleteInFolder(meshFolder);
                     }
                     else
                     {
                         deleteInFolder(meshFolder);
                     }
                 }
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
-            }
-
-            
+            }      
+                        
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -263,29 +262,55 @@ namespace WindowsFormsApplication4
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            var clickPos = this.PointToClient(new System.Drawing.Point(MousePosition.X, MousePosition.Y));
 
-            // If click is over the right-hand portion of the button show the menu
-            if (clickPos.X >= (Size.Width - 10))
-                ShowMenuUnderControl();
-            else
-                base.OnClick(e);
-        }
-        // If you want right-mouse click to invoke the menu override the mouse up event
-        protected override void OnMouseUp(MouseEventArgs mevent)
+        private void SplitClickDelete(object sender, EventArgs e)
         {
-            if ((mevent.Button & MouseButtons.Right) != 0)
-                ShowMenuUnderControl();
-            else
-                base.OnMouseUp(mevent);
+            DialogResult dialogResult = MessageBox.Show("Are you sure to delete Mesh folder", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {                
+                WindowsIdentity user = WindowsIdentity.GetCurrent();
+                string userName = user.Name.Substring(user.Name.LastIndexOf("\\") + 1);
+
+                if (folderPath == null)
+                {
+                    MessageBox.Show(warningFolderMissing);
+                }
+                else
+                {
+                    if (searchRegistry() == "%AltiumMeshApplicationData%")
+                    {
+                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(folderPath) + @"}\Mesh";
+                        deleteInFolder(meshFolder);
+                    }
+                    else
+                    {
+                        deleteInFolder(meshFolder);
+                    }
+                }
+            }            
         }
 
-        // Raise the context menu
-        public void ShowMenuUnderControl()
+        private void SplitClickOpen(object sender, EventArgs e)
         {
-            //splitMenuStrip.Show(this, new Point(0, this.Height), ToolStripDropDownDirection.BelowRight);
+                WindowsIdentity user = WindowsIdentity.GetCurrent();
+                string userName = user.Name.Substring(user.Name.LastIndexOf("\\") + 1);
+
+                if (folderPath == null)
+                {
+                    MessageBox.Show(warningFolderMissing);
+                }
+                else
+                {
+                    if (searchRegistry() == "%AltiumMeshApplicationData%")
+                    {
+                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(folderPath) + @"}\Mesh";
+                        openFolder(meshFolder);
+                    }
+                    else
+                    {
+                        openFolder(meshFolder);
+                    }
+                }                        
         }
     }
 }

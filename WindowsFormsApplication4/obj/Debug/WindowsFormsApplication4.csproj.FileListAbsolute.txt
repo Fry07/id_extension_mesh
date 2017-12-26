@@ -7,3 +7,5 @@ C:\Users\ivan.matiash\Documents\Visual Studio 2015\Projects\WindowsFormsApplicat
 C:\Users\ivan.matiash\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4\WindowsFormsApplication4\bin\Debug\Altium_ID_Extension_Mesh.pdb
 C:\Users\ivan.matiash\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4\WindowsFormsApplication4\obj\Debug\Altium_ID_Extension_Mesh.exe
 C:\Users\ivan.matiash\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4\WindowsFormsApplication4\obj\Debug\Altium_ID_Extension_Mesh.pdb
+C:\Users\ivan.matiash\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4\WindowsFormsApplication4\bin\Debug\ClassLibrary2.dll
+C:\Users\ivan.matiash\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4\WindowsFormsApplication4\bin\Debug\ClassLibrary2.pdb
