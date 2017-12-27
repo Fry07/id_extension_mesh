@@ -41,7 +41,6 @@ namespace WindowsFormsApplication4
                     folderPath = folderDialog.SelectedPath;
                     //MessageBox.Show("You've selected: " + folderPath);
                     richTextBox1.Text += "You've selected: " + folderPath + "\n";
-                    textBox2.Text = folderPath;
                 }
             }
             
@@ -55,7 +54,7 @@ namespace WindowsFormsApplication4
             }
             else
             {
-                altiumID = findAltiumID(textBox1.Text);
+                altiumID = findAltiumID(folderPath);
                 richTextBox1.Text += "Altium ID: " + altiumID + "\n";
             }            
         }
@@ -75,7 +74,7 @@ namespace WindowsFormsApplication4
                 {
                     res = match.Value;
                     //MessageBox.Show("ID: " + res);
-                    textBox2.Text = res;
+                    textBox1.Text = res;
                 }
                 return res;
             }
@@ -136,7 +135,7 @@ namespace WindowsFormsApplication4
             }             
             else
             {
-                openFolder(@"C:\ProgramData\Altium\"+ findProductType(textBox2.Text) + " {" + findAltiumID(textBox2.Text) + @"}\Extensions");
+                openFolder(@"C:\ProgramData\Altium\"+ findProductType(folderPath) + " {" + findAltiumID(folderPath) + @"}\Extensions");
             }                    
         }
 
@@ -180,7 +179,7 @@ namespace WindowsFormsApplication4
             string res = null;
             try
             {
-                using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\Altium\\" + findProductType(textBox2.Text) + " {" + findAltiumID(textBox2.Text) + "}\\DesignExplorer\\Preferences\\AdvPCB\\TModelOptions"))
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\Altium\\" + findProductType(folderPath) + " {" + findAltiumID(folderPath) + "}\\DesignExplorer\\Preferences\\AdvPCB\\TModelOptions"))
                 {
                     if (key != null)
                     {
@@ -217,7 +216,7 @@ namespace WindowsFormsApplication4
                 {
                     if (searchRegistry() == "%AltiumMeshApplicationData%")
                     {
-                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(textBox2.Text) + @"}\Mesh";
+                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(folderPath) + @"}\Mesh";
                         deleteInFolder(meshFolder);
                     }
                     else
@@ -230,7 +229,7 @@ namespace WindowsFormsApplication4
 
         private void button3_Click(object sender, EventArgs e)
         {
-            runAltium(textBox2.Text);
+            runAltium(folderPath);
         }
 
         private void runAltium (string filePath)
@@ -269,11 +268,7 @@ namespace WindowsFormsApplication4
                 {
                     if (searchRegistry() == "%AltiumMeshApplicationData%")
                     {
-<<<<<<< HEAD
-                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(textBox2.Text) + @"}\Mesh";
-=======
                         meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(folderPath) + @"}\Mesh";
->>>>>>> parent of 7b51bd1... Revert "fixed opening of split button"
                         openFolder(meshFolder);
                     }
                     else
@@ -299,11 +294,9 @@ namespace WindowsFormsApplication4
                 {
                     if (searchRegistry() == "%AltiumMeshApplicationData%")
                     {
-<<<<<<< HEAD
-                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(textBox2.Text) + @"}\Mesh";
-=======
+
                         meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(folderPath) + @"}\Mesh";
->>>>>>> parent of 7b51bd1... Revert "fixed opening of split button"
+
                         deleteInFolder(meshFolder);
                     }
                     else
@@ -312,14 +305,11 @@ namespace WindowsFormsApplication4
                     }
                 }
             }
-<<<<<<< HEAD
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
-=======
->>>>>>> parent of 7b51bd1... Revert "fixed opening of split button"
         }
         
     }
