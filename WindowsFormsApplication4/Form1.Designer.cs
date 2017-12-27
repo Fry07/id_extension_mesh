@@ -36,7 +36,10 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.splitButton2 = new ClassLibrary2.SplitButton();
+<<<<<<< HEAD
             this.textBox2 = new System.Windows.Forms.TextBox();
+=======
+>>>>>>> parent of 7b51bd1... Revert "fixed opening of split button"
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -106,7 +109,11 @@
         "Open Mesh Folder"};
             this.splitButton2.Image = ((System.Drawing.Image)(resources.GetObject("splitButton2.Image")));
             this.splitButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+<<<<<<< HEAD
             this.splitButton2.Location = new System.Drawing.Point(215, 289);
+=======
+            this.splitButton2.Location = new System.Drawing.Point(213, 289);
+>>>>>>> parent of 7b51bd1... Revert "fixed opening of split button"
             this.splitButton2.Name = "splitButton2";
             this.splitButton2.Size = new System.Drawing.Size(196, 23);
             this.splitButton2.TabIndex = 9;
@@ -114,6 +121,7 @@
             this.splitButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.splitButton2.UseVisualStyleBackColor = true;
             this.splitButton2.Click += new System.EventHandler(this.splitButton2_Click);
+<<<<<<< HEAD
             // 
             // textBox2
             // 
@@ -122,13 +130,18 @@
             this.textBox2.Size = new System.Drawing.Size(190, 20);
             this.textBox2.TabIndex = 10;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+=======
+>>>>>>> parent of 7b51bd1... Revert "fixed opening of split button"
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 321);
+<<<<<<< HEAD
             this.Controls.Add(this.textBox2);
+=======
+>>>>>>> parent of 7b51bd1... Revert "fixed opening of split button"
             this.Controls.Add(this.splitButton2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button4);
@@ -154,7 +167,10 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private ClassLibrary2.SplitButton splitButton2;
+<<<<<<< HEAD
         private System.Windows.Forms.TextBox textBox2;
+=======
+>>>>>>> parent of 7b51bd1... Revert "fixed opening of split button"
     }
 }
 
