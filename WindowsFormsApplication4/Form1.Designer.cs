@@ -35,7 +35,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.splitButton1 = new ClassLibrary2.SplitButton();
+            this.splitButton2 = new ClassLibrary2.SplitButton();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -53,7 +54,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(12, 234);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(196, 23);
+            this.button1.Size = new System.Drawing.Size(98, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Select Folder";
             this.button1.UseVisualStyleBackColor = true;
@@ -91,35 +92,44 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(215, 234);
+            this.button3.Location = new System.Drawing.Point(313, 234);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(196, 23);
+            this.button3.Size = new System.Drawing.Size(98, 23);
             this.button3.TabIndex = 7;
             this.button3.Text = "Run";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // splitButton1
+            // splitButton2
             // 
-            this.splitButton1.ColeItems = new string[] {
-        "Delete Mesh Folder",
+            this.splitButton2.ColeItems = new string[] {
         "Open Mesh Folder"};
-            this.splitButton1.Image = ((System.Drawing.Image)(resources.GetObject("splitButton1.Image")));
-            this.splitButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.splitButton1.Location = new System.Drawing.Point(215, 289);
-            this.splitButton1.Name = "splitButton1";
-            this.splitButton1.Size = new System.Drawing.Size(196, 23);
-            this.splitButton1.TabIndex = 8;
-            this.splitButton1.Text = "Mesh...";
-            this.splitButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.splitButton1.UseVisualStyleBackColor = true;
+            this.splitButton2.Image = ((System.Drawing.Image)(resources.GetObject("splitButton2.Image")));
+            this.splitButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.splitButton2.Location = new System.Drawing.Point(215, 289);
+            this.splitButton2.Name = "splitButton2";
+            this.splitButton2.Size = new System.Drawing.Size(196, 23);
+            this.splitButton2.TabIndex = 9;
+            this.splitButton2.Text = "Delete Mesh";
+            this.splitButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.splitButton2.UseVisualStyleBackColor = true;
+            this.splitButton2.Click += new System.EventHandler(this.splitButton2_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(117, 236);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(190, 20);
+            this.textBox2.TabIndex = 10;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 321);
-            this.Controls.Add(this.splitButton1);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.splitButton2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox1);
@@ -143,7 +153,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
-        private ClassLibrary2.SplitButton splitButton1;
+        private ClassLibrary2.SplitButton splitButton2;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

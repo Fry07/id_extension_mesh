@@ -21,9 +21,8 @@ namespace WindowsFormsApplication4
         public Form1()
         {
             InitializeComponent();
-
-            splitButton1.Cms.Items[0].Click += new EventHandler(SplitClickDelete);
-            splitButton1.Cms.Items[1].Click += new EventHandler(SplitClickOpen);
+            
+            splitButton2.Cms.Items[0].Click += new EventHandler(SplitClickOpen);
         }
 
         String folderPath = null;
@@ -42,6 +41,7 @@ namespace WindowsFormsApplication4
                     folderPath = folderDialog.SelectedPath;
                     //MessageBox.Show("You've selected: " + folderPath);
                     richTextBox1.Text += "You've selected: " + folderPath + "\n";
+                    textBox2.Text = folderPath;
                 }
             }
             
@@ -55,7 +55,7 @@ namespace WindowsFormsApplication4
             }
             else
             {
-                altiumID = findAltiumID(folderPath);
+                altiumID = findAltiumID(textBox1.Text);
                 richTextBox1.Text += "Altium ID: " + altiumID + "\n";
             }            
         }
@@ -75,7 +75,7 @@ namespace WindowsFormsApplication4
                 {
                     res = match.Value;
                     //MessageBox.Show("ID: " + res);
-                    textBox1.Text = res;
+                    textBox2.Text = res;
                 }
                 return res;
             }
@@ -136,7 +136,7 @@ namespace WindowsFormsApplication4
             }             
             else
             {
-                openFolder(@"C:\ProgramData\Altium\"+ findProductType(folderPath) + " {" + findAltiumID(folderPath) + @"}\Extensions");
+                openFolder(@"C:\ProgramData\Altium\"+ findProductType(textBox2.Text) + " {" + findAltiumID(textBox2.Text) + @"}\Extensions");
             }                    
         }
 
@@ -180,7 +180,7 @@ namespace WindowsFormsApplication4
             string res = null;
             try
             {
-                using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\Altium\\" + findProductType(folderPath) + " {" + findAltiumID(folderPath) + "}\\DesignExplorer\\Preferences\\AdvPCB\\TModelOptions"))
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\Altium\\" + findProductType(textBox2.Text) + " {" + findAltiumID(textBox2.Text) + "}\\DesignExplorer\\Preferences\\AdvPCB\\TModelOptions"))
                 {
                     if (key != null)
                     {
@@ -217,7 +217,7 @@ namespace WindowsFormsApplication4
                 {
                     if (searchRegistry() == "%AltiumMeshApplicationData%")
                     {
-                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(folderPath) + @"}\Mesh";
+                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(textBox2.Text) + @"}\Mesh";
                         deleteInFolder(meshFolder);
                     }
                     else
@@ -225,18 +225,12 @@ namespace WindowsFormsApplication4
                         deleteInFolder(meshFolder);
                     }
                 }
-            }      
-                        
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+            }                        
+        }      
 
         private void button3_Click(object sender, EventArgs e)
         {
-            runAltium(folderPath);
+            runAltium(textBox2.Text);
         }
 
         private void runAltium (string filePath)
@@ -262,34 +256,6 @@ namespace WindowsFormsApplication4
             }
         }
 
-
-        private void SplitClickDelete(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Are you sure to delete Mesh folder", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
-            {                
-                WindowsIdentity user = WindowsIdentity.GetCurrent();
-                string userName = user.Name.Substring(user.Name.LastIndexOf("\\") + 1);
-
-                if (folderPath == null)
-                {
-                    MessageBox.Show(warningFolderMissing);
-                }
-                else
-                {
-                    if (searchRegistry() == "%AltiumMeshApplicationData%")
-                    {
-                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(folderPath) + @"}\Mesh";
-                        deleteInFolder(meshFolder);
-                    }
-                    else
-                    {
-                        deleteInFolder(meshFolder);
-                    }
-                }
-            }            
-        }
-
         private void SplitClickOpen(object sender, EventArgs e)
         {
                 WindowsIdentity user = WindowsIdentity.GetCurrent();
@@ -303,7 +269,7 @@ namespace WindowsFormsApplication4
                 {
                     if (searchRegistry() == "%AltiumMeshApplicationData%")
                     {
-                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(folderPath) + @"}\Mesh";
+                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(textBox2.Text) + @"}\Mesh";
                         openFolder(meshFolder);
                     }
                     else
@@ -311,6 +277,38 @@ namespace WindowsFormsApplication4
                         openFolder(meshFolder);
                     }
                 }                        
+        }
+
+        private void splitButton2_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure to delete Mesh folder", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                WindowsIdentity user = WindowsIdentity.GetCurrent();
+                string userName = user.Name.Substring(user.Name.LastIndexOf("\\") + 1);
+
+                if (folderPath == null)
+                {
+                    MessageBox.Show(warningFolderMissing);
+                }
+                else
+                {
+                    if (searchRegistry() == "%AltiumMeshApplicationData%")
+                    {
+                        meshFolder = @"C:\Users\" + userName + @"\AppData\Local\Altium\" + productType + " {" + findAltiumID(textBox2.Text) + @"}\Mesh";
+                        deleteInFolder(meshFolder);
+                    }
+                    else
+                    {
+                        deleteInFolder(meshFolder);
+                    }
+                }
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
