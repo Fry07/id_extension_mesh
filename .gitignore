@@ -45,3 +45,11 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#Build output
+bin
+obj
+v15
+v14
+.vs
+*.suo

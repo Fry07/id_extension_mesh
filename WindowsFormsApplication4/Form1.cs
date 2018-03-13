@@ -186,14 +186,13 @@ namespace WindowsFormsApplication4
                         Object o = key.GetValue("MeshDirectory");
                         if (o != null)
                         {
-                            //Version version = new Version(o as String);  //"as" because it's REG_SZ...otherwise ToString() might be safe(r)
                             meshFolder = o.ToString();
-                            return o.ToString();                                             //do what you like with version
+                            return o.ToString();                                             
                         }
                     }
                 }
             }
-            catch (Exception ex)  //just for demonstration...it's always best to handle specific exceptions
+            catch (Exception ex)  
             {
                 //react appropriately
             }
@@ -311,6 +310,10 @@ namespace WindowsFormsApplication4
         {
 
         }
-        
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
