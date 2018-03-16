@@ -25,25 +25,33 @@ namespace WindowsFormsApplication4
             splitButton2.Cms.Items[0].Click += new EventHandler(SplitClickOpen);
         }
 
-        String folderPath = null;
-        String altiumID = null;
-        String productType = null;
-        String meshFolder = null;
+        string folderPath = null;
+        string altiumID = null;
+        string productType = null;
+        string meshFolder = null;
 
-        String warningFolderMissing = "Please select correct Altium folder";
+        string warningFolderMissing = "Please select correct Altium folder";
               
         private void button1_Click(object sender, EventArgs e)
         {
-            using (var folderDialog = new FolderBrowserDialog())
+            string defaultpath = @"C:\Program Files\Altium";
+            Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Core.FileDialog fileDialog = app.get_FileDialog(Microsoft.Office.Core.MsoFileDialogType.msoFileDialogFolderPicker);
+            fileDialog.InitialFileName = (Directory.Exists(defaultpath)) ? defaultpath : @"C:\";
+
+            int nres = fileDialog.Show();
+            if (nres == -1) //ok
             {
-                if (folderDialog.ShowDialog() == DialogResult.OK)
+                Microsoft.Office.Core.FileDialogSelectedItems selectedItems = fileDialog.SelectedItems;
+                string[] selectedFolders = selectedItems.Cast<string>().ToArray();
+
+                if (selectedFolders.Length > 0)
                 {
-                    folderPath = folderDialog.SelectedPath;
-                    //MessageBox.Show("You've selected: " + folderPath);
+                    string selectedFolder = selectedFolders[0];
+                    folderPath = selectedFolder;
                     richTextBox1.Text += "You've selected: " + folderPath + "\n";
                 }
             }
-            
         }
 
         private void button2_Click(object sender, EventArgs e)
